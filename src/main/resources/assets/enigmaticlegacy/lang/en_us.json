@@ -1,0 +1,23 @@
+{
+  "creativetab.enigmaticlegacy_tab": "§5Enigmatic Legacy",
+
+  "item.enigmaticlegacy.cursed_ring": "§4Ring of the Seven Curses",
+
+  "enigmaticlegacy.configuration.PainModifier": "Pain Modifier",
+  "enigmaticlegacy.configuration.KnockbackDebuff": "Knockback Debuff",
+  "enigmaticlegacy.configuration.MonsterDamageDebuff": "Monster Damage Debuff",
+  "enigmaticlegacy.configuration.ArmorDebuff": "Armor Debuff",
+  "enigmaticlegacy.configuration.FortuneBonus": "Fortune Bonus",
+  "enigmaticlegacy.configuration.LootingBonus": "Looting Bonus",
+  "enigmaticlegacy.configuration.ExperienceBonus": "Experience Bonus",
+  "enigmaticlegacy.configuration.EnchantingBonus": "Enchanting Bonus",
+  "enigmaticlegacy.configuration.DisableInsomnia": "Disable Insomnia",
+  "enigmaticlegacy.configuration.EndermenRandomportFrequency": "Endermen Randomport Frequency",
+  "enigmaticlegacy.configuration.EndermenRandomportRange": "Endermen Randomport Range",
+  "enigmaticlegacy.configuration.NeutralAngerRange": "Neutral Anger Range",
+  "enigmaticlegacy.configuration.NeutralXRayRange": "Neutral Xray Range",
+  "enigmaticlegacy.configuration.NeutralAngerWhitelist": "Neutral Anger White list",
+  "enigmaticlegacy.configuration.SuperCursedTime": "Super Cursed Time",
+  "enigmaticlegacy.configuration.UltraHardcore": "Ultra Hardcore",
+  "enigmaticlegacy.configuration.AutoEquip": "Auto Equip"
+}
