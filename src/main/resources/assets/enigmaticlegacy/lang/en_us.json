@@ -9,6 +9,7 @@
   "enigmaticlegacy.configuration.ArmorDebuff": "Armor Debuff",
   "enigmaticlegacy.configuration.FortuneBonus": "Fortune Bonus",
   "enigmaticlegacy.configuration.LootingBonus": "Looting Bonus",
+  "enigmaticlegacy.configuration.BlockInteractionRangeBonus": "Block Interaction Range Bonus",
   "enigmaticlegacy.configuration.ExperienceBonus": "Experience Bonus",
   "enigmaticlegacy.configuration.EnchantingBonus": "Enchanting Bonus",
   "enigmaticlegacy.configuration.DisableInsomnia": "Disable Insomnia",

@@ -35,6 +35,10 @@ public class Config {
             .comment("How many bonus Looting levels ring provides")
             .defineInRange("LootingBonus", 1, 0, Integer.MAX_VALUE);
 
+    public static final ModConfigSpec.DoubleValue BLOCK_INTERACTION_RANGE_BONUS = BUILDER
+            .comment("How many bonus Block Interaction Range ring provides")
+            .defineInRange("BlockInteractionRangeBonus", 2.5, 0, Integer.MAX_VALUE);
+
     // TODO возможно минимальный показатель надо изменить до 0 если это бонус а не множитель
     public static final ModConfigSpec.IntValue EXPERIENCE_BONUS = BUILDER
             .comment("How much experience will drop from mobs to bearers of the ring, measured in percents.")
@@ -49,27 +53,27 @@ public class Config {
             .define("DisableInsomnia", false);
 
     // TODO стоит изменить максимальное значение
-    public static final ModConfigSpec.IntValue ENDERMAN_RANDOMPORT_FREQUENCY = BUILDER
+    public static final ModConfigSpec.DoubleValue ENDERMAN_RANDOMPORT_FREQUENCY = BUILDER
             .comment("Allows to adjust how frequently Endermen will try to randomly teleport to player bearing the ring, even "
                     + "if they can't see the player and are not angered yet. Lower value = less probability of this happening.")
-            .defineInRange("EndermenRandomportFrequency", 1, 0, Integer.MAX_VALUE);
+            .defineInRange("EndermenRandomportFrequency", 1D, 0, Integer.MAX_VALUE);
 
-    public static final ModConfigSpec.IntValue ENDERMAN_RANDOM_RANGE = BUILDER
+    public static final ModConfigSpec.DoubleValue ENDERMAN_RANDOMPORT_RANGE = BUILDER
             .comment("Range in which Endermen can try to randomly teleport to bearers of the ring.")
-            .defineInRange("EndermenRandomportRange", 32, 0, 120);
+            .defineInRange("EndermenRandomportRange", 32D, 0, 120);
 
     // TODO Надо также сделать конфиг на список мобов
-    public static final ModConfigSpec.IntValue NEUTRAL_ANGER_RANGE = BUILDER
+    public static final ModConfigSpec.DoubleValue NEUTRAL_ANGER_RANGE = BUILDER
             .comment("Range in which neutral creatures are angered against bearers of the ring.")
-            .defineInRange("NeutralAngerRange", 24, 0, 120);
+            .defineInRange("NeutralAngerRange", 24D, 0, 120);
 
-    public static final ModConfigSpec.IntValue NEUTRAL_X_RAY_RANGE = BUILDER
+    public static final ModConfigSpec.DoubleValue NEUTRAL_X_RAY_RANGE = BUILDER
             .comment("Range in which neutral creatures can see and target bearers of the ring even if they can't directly see them.")
-            .defineInRange("NeutralXRayRange", 4, 0, 120);
+            .defineInRange("NeutralXRayRange", 4D, 0, 120);
 
     public static final ModConfigSpec.ConfigValue<List<? extends String>> NEUTRAL_ANGER_WHITELIST = BUILDER
             .comment("A list of neutral mobs that will be aggressive towards the player.")
-            .defineListAllowEmpty("NeutralAngerWhitelist", List.of("minecraft:iron_golem", "minecraft:piglin"), () -> "", Config::validateEntityName);
+            .defineListAllowEmpty("NeutralAngerWhitelist", List.of("minecraft:iron_golem", "minecraft:enderman"), () -> "", Config::validateEntityName);
 
     public static final ModConfigSpec.DoubleValue SUPER_CURSED_TIME = BUILDER
             .comment("A fraction of time the player should bear the Seven Curses to use Abyssal Artifacts.")

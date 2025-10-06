@@ -4,13 +4,21 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import net.jrdemiurge.enigmaticlegacy.Config;
 import net.jrdemiurge.enigmaticlegacy.EnigmaticLegacy;
+import net.jrdemiurge.enigmaticlegacy.mixin.EnderManAccessor;
 import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.NeutralMob;
+import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -33,13 +41,14 @@ public class CursedRing extends Item implements ICurioItem {
 
         attributeMap.put(Attributes.ARMOR, new AttributeModifier(ResourceLocation.fromNamespaceAndPath(EnigmaticLegacy.MOD_ID, "cursed_ring.armor"), (double) -Config.ARMOR_DEBUFF.get() / 100, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
         attributeMap.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(ResourceLocation.fromNamespaceAndPath(EnigmaticLegacy.MOD_ID, "cursed_ring.armor_toughness"), (double) -Config.ARMOR_DEBUFF.get() / 100, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+        attributeMap.put(Attributes.BLOCK_INTERACTION_RANGE, new AttributeModifier(ResourceLocation.fromNamespaceAndPath(EnigmaticLegacy.MOD_ID, "cursed_ring.block_interaction_range"), Config.BLOCK_INTERACTION_RANGE_BONUS.getAsDouble(), AttributeModifier.Operation.ADD_VALUE));
 
         return attributeMap;
     }
 
     @Override
     public List<Component> getAttributesTooltip(List<Component> tooltips, Item.TooltipContext context, ItemStack stack) {
-        // tooltips.clear();
+        tooltips.clear();
         return tooltips;
     }
 
@@ -79,8 +88,7 @@ public class CursedRing extends Item implements ICurioItem {
         return stack.getItem().equals(this) || stack.getItem().equals(EnigmaticItems.ENIGMATIC_AMULET);
     }*/
 
-    // TODO АГР
-    /*@Override
+    @Override
     public void curioTick(SlotContext context, ItemStack stack) {
         if (context.entity().level().isClientSide || !(context.entity() instanceof Player))
             return;
@@ -90,59 +98,45 @@ public class CursedRing extends Item implements ICurioItem {
         if (player.isCreative() || player.isSpectator())
             return;
 
-        List<LivingEntity> genericMobs = player.level().getEntitiesOfClass(LivingEntity.class, SuperpositionHandler.getBoundingBoxAroundEntity(player, neutralAngerRange.getValue()));
-        List<EnderMan> endermen = player.level().getEntitiesOfClass(EnderMan.class, SuperpositionHandler.getBoundingBoxAroundEntity(player, endermenRandomportRange.getValue()));
+        RandomSource random = player.getRandom();
+
+        List<LivingEntity> genericMobs = player.level().getEntitiesOfClass(LivingEntity.class, player.getBoundingBox().inflate(Config.NEUTRAL_ANGER_RANGE.getAsDouble()));
+        List<EnderMan> endermen = player.level().getEntitiesOfClass(EnderMan.class, player.getBoundingBox().inflate(Config.ENDERMAN_RANDOMPORT_RANGE.getAsDouble()));
 
         for (EnderMan enderman : endermen) {
-            if (random.nextDouble() <= (0.002 * endermenRandomportFrequency.getValue())) {
-                if (enderman.teleportTowards(player) && player.hasLineOfSight(enderman)) {
+            if (random.nextDouble() <= (0.002 * Config.ENDERMAN_RANDOMPORT_FREQUENCY.getAsDouble())) {
+                if (((EnderManAccessor) enderman).callTeleportTowards(player) && player.hasLineOfSight(enderman)) {
                     enderman.setTarget(player);
                 }
             }
         }
 
+        // TODO потом ещзё против пиглинов но сначала их поведение надо прочекать
         for (LivingEntity checkedEntity : genericMobs) {
             double visibility = player.getVisibilityPercent(checkedEntity);
-            double angerDistance = Math.max(neutralAngerRange.getValue() * visibility, neutralXRayRange.getValue());
+            double angerDistance = Math.max(Config.NEUTRAL_ANGER_RANGE.getAsDouble() * visibility, Config.NEUTRAL_X_RAY_RANGE.getAsDouble());
 
             if (checkedEntity.distanceToSqr(player.getX(), player.getY(), player.getZ()) > angerDistance * angerDistance) {
                 continue;
             }
 
-            if (checkedEntity instanceof Piglin && !SuperpositionHandler.hasCurio(player, EnigmaticItems.AVARICE_SCROLL)) {
-                Piglin piglin = (Piglin) checkedEntity;
+            if (checkedEntity instanceof NeutralMob neutral) {
 
-                if (piglin.getTarget() == null || !piglin.getTarget().isAlive()) {
-                    if (player.hasLineOfSight(checkedEntity) || player.distanceTo(checkedEntity) <= neutralXRayRange.getValue()) {
-                        PiglinAi.wasHurtBy(piglin, player);
-                    } else {
-                        continue;
-                    }
-                }
-
-            } else if (checkedEntity instanceof NeutralMob) {
-                NeutralMob neutral = (NeutralMob) checkedEntity;
-
-                if (neutralAngerBlacklist.contains(ForgeRegistries.ENTITY_TYPES.getKey(checkedEntity.getType()))) {
+                ResourceLocation mobId = BuiltInRegistries.ENTITY_TYPE.getKey(checkedEntity.getType());
+                List<? extends String> whitelist = Config.NEUTRAL_ANGER_WHITELIST.get();
+                if (!whitelist.contains(mobId.toString())) {
                     continue;
                 }
 
                 if (neutral instanceof TamableAnimal tamable && tamable.isTame()) {
                     continue;
-                } else if (SuperpositionHandler.hasItem(player, EnigmaticItems.ANIMAL_GUIDEBOOK)) {
-                    if (EnigmaticItems.ANIMAL_GUIDEBOOK.isTamableAnimal(checkedEntity)) {
-                        continue;
-                    }
-                } else if (neutral instanceof IronGolem golem && golem.isPlayerCreated()) {
+                }
+                if (neutral instanceof IronGolem golem && golem.isPlayerCreated()) {
                     continue;
-                } else if (neutral instanceof Bee) {
-                    if (saveTheBees.getValue() || SuperpositionHandler.hasItem(player, EnigmaticItems.ANIMAL_GUIDEBOOK)) {
-                        continue;
-                    }
                 }
 
                 if (neutral.getTarget() == null || !neutral.getTarget().isAlive()) {
-                    if (player.hasLineOfSight(checkedEntity) || player.distanceTo(checkedEntity) <= neutralXRayRange.getValue()) {
+                    if (player.hasLineOfSight(checkedEntity) || player.distanceTo(checkedEntity) <= Config.NEUTRAL_X_RAY_RANGE.getAsDouble()) {
                         neutral.setTarget(player);
                     } else {
                         continue;
@@ -150,8 +144,7 @@ public class CursedRing extends Item implements ICurioItem {
                 }
             }
         }
-
-    }*/
+    }
 
     @Override
     public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
@@ -163,10 +156,9 @@ public class CursedRing extends Item implements ICurioItem {
         return false;
     }
 
-    // TODO Радиус агра нейтралов
-    /*public double getAngerRange() {
-        return neutralAngerRange.getValue();
-    }*/
+    public double getAngerRange() {
+        return Config.NEUTRAL_ANGER_RANGE.getAsDouble();
+    }
 
     @Override
     public int getFortuneLevel(SlotContext slotContext, LootContext lootContext, ItemStack curio) {
