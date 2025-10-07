@@ -5,6 +5,8 @@ import com.google.common.collect.Multimap;
 import net.jrdemiurge.enigmaticlegacy.Config;
 import net.jrdemiurge.enigmaticlegacy.EnigmaticLegacy;
 import net.jrdemiurge.enigmaticlegacy.mixin.EnderManAccessor;
+import net.jrdemiurge.enigmaticlegacy.util.ModUtils;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
@@ -22,7 +24,10 @@ import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.storage.loot.LootContext;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
@@ -169,4 +174,16 @@ public class CursedRing extends Item implements ICurioItem {
     public int getLootingLevel(SlotContext slotContext, @Nullable LootContext lootContext, ItemStack stack) {
         return defaultInstance.getLootingLevel(slotContext, lootContext) + Config.LOOTING_BONUS.getAsInt();
     }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        if (Screen.hasShiftDown()) {
+            ModUtils.indicateWorthyOnesOnly(tooltipComponents);
+        } else {
+            ModUtils.indicateCursedOnesOnly(tooltipComponents);
+        }
+
+    }
+
 }

@@ -3,6 +3,19 @@
 
   "item.enigmaticlegacy.cursed_ring": "§4Ring of the Seven Curses",
 
+  "stat.enigmaticlegacy.time_with_cursed_ring": "Time with Cursed Ring",
+  "stat.enigmaticlegacy.time_without_cursed_ring": "Time without Cursed Ring",
+
+  "tooltip.enigmaticlegacy.void": " ",
+
+  "tooltip.enigmaticlegacy.worthyOnesOnly1": "§5The sacrifice necessary to acquire this item",
+  "tooltip.enigmaticlegacy.worthyOnesOnly2": "§5is immense - you have to spend §699.5%§5 of your",
+  "tooltip.enigmaticlegacy.worthyOnesOnly3": "§5time in the world suffering the §6Seven Curses§5.",
+  "tooltip.enigmaticlegacy.worthyOnesOnly4": "For now, your time measures at:",
+
+  "tooltip.enigmaticlegacy.cursedOnesOnly1": "Only those who bear the Seven Curses",
+  "tooltip.enigmaticlegacy.cursedOnesOnly2": "hold power to obtain and use this item.",
+
   "enigmaticlegacy.configuration.PainModifier": "Pain Modifier",
   "enigmaticlegacy.configuration.KnockbackDebuff": "Knockback Debuff",
   "enigmaticlegacy.configuration.MonsterDamageDebuff": "Monster Damage Debuff",

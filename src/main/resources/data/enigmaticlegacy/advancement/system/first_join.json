@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "on_login": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "rewards": {
+    "loot": [
+      "enigmaticlegacy:advancement_rewards/cursed_ring"
+    ]
+  }
+}

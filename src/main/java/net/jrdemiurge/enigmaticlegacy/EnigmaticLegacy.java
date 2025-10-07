@@ -2,6 +2,7 @@ package net.jrdemiurge.enigmaticlegacy;
 
 import net.jrdemiurge.enigmaticlegacy.item.ModCreativeModeTabs;
 import net.jrdemiurge.enigmaticlegacy.item.ModItems;
+import net.jrdemiurge.enigmaticlegacy.stat.ModStats;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -27,12 +28,13 @@ public class EnigmaticLegacy {
 
         ModCreativeModeTabs.register(modEventBus);
         ModItems.register(modEventBus);
+        ModStats.register(modEventBus);
 
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
-
+        event.enqueueWork(ModStats::onCommonSetup);
     }
 
     @SubscribeEvent
