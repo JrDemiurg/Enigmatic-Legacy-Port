@@ -79,15 +79,14 @@ public class Config {
             .comment("A fraction of time the player should bear the Seven Curses to use Abyssal Artifacts.")
             .defineInRange("SuperCursedTime", 0.995, 0, 1);
 
-    public static final ModConfigSpec.BooleanValue ULTRA_HARDCORE = BUILDER
+/*    public static final ModConfigSpec.BooleanValue ULTRA_HARDCORE = BUILDER
             .comment("If true, Ring of the Seven Curses will be equipped into player's ring slot right away when "
                     + "entering a new world, instead of just being added to their inventory.")
-            .define("UltraHardcore", false);
+            .define("UltraHardcore", false);*/
 
     public static final ModConfigSpec.BooleanValue AUTO_EQUIP = BUILDER
             .comment("If true, Ring of the Seven Curses will be equipped into player's ring slot right away when "
-                    + "it enters their inventory. This is different from ultra hardcore option as the way through "
-                    + "which ring ends up in player's inventory does not matter.")
+                    + "it enters their inventory.")
             .define("AutoEquip", false);
 
     // Это я добавлять не собираюсь

@@ -13,6 +13,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.NeutralMob;
 import net.minecraft.world.entity.TamableAnimal;
@@ -25,6 +26,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -32,6 +34,7 @@ import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
@@ -84,7 +87,16 @@ public class CursedRing extends Item implements ICurioItem {
     }*/
 
     @Override
+    @Nonnull
     public ICurio.DropRule getDropRule(SlotContext slotContext, DamageSource source, boolean recentlyHit, ItemStack stack) {
+        return ICurio.DropRule.ALWAYS_KEEP;
+    }
+
+    // TODO создать новый проект и проверить как там работает dropRule, если так же сломано то написать об этом разрабу
+    @Override
+    @Deprecated(forRemoval = true, since = "1.21.1")
+    @Nonnull
+    public ICurio.DropRule getDropRule(SlotContext slotContext, DamageSource source, int lootingLevel, boolean recentlyHit, ItemStack stack) {
         return ICurio.DropRule.ALWAYS_KEEP;
     }
 
@@ -95,10 +107,8 @@ public class CursedRing extends Item implements ICurioItem {
 
     @Override
     public void curioTick(SlotContext context, ItemStack stack) {
-        if (context.entity().level().isClientSide || !(context.entity() instanceof Player))
+        if (context.entity().level().isClientSide || !(context.entity() instanceof Player player))
             return;
-
-        Player player = (Player) context.entity();
 
         if (player.isCreative() || player.isSpectator())
             return;
@@ -146,6 +156,20 @@ public class CursedRing extends Item implements ICurioItem {
                     } else {
                         continue;
                     }
+                }
+            }
+        }
+    }
+
+    @Override
+    public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
+        if (level.isClientSide || !(entity instanceof Player player))
+            return;
+
+        if (Config.AUTO_EQUIP.isTrue() && !player.isCreative() && !player.isSpectator()) {
+            if (!ModUtils.isTheCursedOne(player)) {
+                if (ModUtils.tryForceEquip(player, stack)) {
+                    player.getInventory().setItem(slotId, ItemStack.EMPTY);
                 }
             }
         }

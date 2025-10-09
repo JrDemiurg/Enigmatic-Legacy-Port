@@ -15,16 +15,23 @@ import net.minecraft.stats.StatsCounter;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import org.apache.commons.lang3.mutable.MutableBoolean;
 import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.SlotContext;
+import top.theillusivec4.curios.api.type.capability.ICurioItem;
+import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
+import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
 import javax.annotation.Nullable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-// TODO сделать таймер на 99,5% через игровую статистику
 public class ModUtils {
     private static long lastRequestMs = 0L;
     private static final long COOLDOWN_MS = 5000L;
@@ -143,5 +150,40 @@ public class ModUtils {
 
         conn.send(new ServerboundClientCommandPacket(ServerboundClientCommandPacket.Action.REQUEST_STATS));
         lastRequestMs = now;
+    }
+
+    public static boolean tryForceEquip(LivingEntity entity, ItemStack curio) {
+        if (!(curio.getItem() instanceof ICurioItem))
+            throw new IllegalArgumentException("I fear for now this only works with ICurioItem");
+
+        MutableBoolean equipped = new MutableBoolean(false);
+        ICurioItem item = (ICurioItem) curio.getItem();
+
+        CuriosApi.getCuriosHelper().getCuriosHandler(entity).ifPresent(handler -> {
+            if (!entity.level().isClientSide) {
+                Map<String, ICurioStacksHandler> curios = handler.getCurios();
+
+                cycle: for (Map.Entry<String, ICurioStacksHandler> entry : curios.entrySet()) {
+                    IDynamicStackHandler stackHandler = entry.getValue().getStacks();
+
+                    for (int i = 0; i < stackHandler.getSlots(); i++) {
+                        ItemStack present = stackHandler.getStackInSlot(i);
+                        Set<String> tags = CuriosApi.getCuriosHelper().getCurioTags(curio.getItem());
+                        String id = entry.getKey();
+
+                        SlotContext context = new SlotContext(id, entity, i, false, entry.getValue().isVisible());
+
+                        if (present.isEmpty() && (tags.contains(id) || tags.contains("curio")) && item.canEquip(context, curio)) {
+                            stackHandler.setStackInSlot(i, curio);
+                            equipped.setTrue();
+                            break cycle;
+                        }
+                    }
+                }
+
+            }
+        });
+
+        return equipped.booleanValue();
     }
 }

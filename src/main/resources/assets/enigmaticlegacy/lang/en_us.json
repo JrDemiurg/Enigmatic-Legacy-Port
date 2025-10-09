@@ -16,6 +16,8 @@
   "tooltip.enigmaticlegacy.cursedOnesOnly1": "Only those who bear the Seven Curses",
   "tooltip.enigmaticlegacy.cursedOnesOnly2": "hold power to obtain and use this item.",
 
+  "message.enigmaticlegacy.cursed_sleep": "Seven Curses awaken unspeakable fear and gnawing uncertainty within as you approach the tempting realm of dreams. No hope for the hopeless, no sleep for the sleepless...",
+
   "enigmaticlegacy.configuration.PainModifier": "Pain Modifier",
   "enigmaticlegacy.configuration.KnockbackDebuff": "Knockback Debuff",
   "enigmaticlegacy.configuration.MonsterDamageDebuff": "Monster Damage Debuff",
