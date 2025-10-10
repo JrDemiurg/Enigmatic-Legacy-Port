@@ -2,20 +2,27 @@ package net.jrdemiurge.enigmaticlegacy.util;
 
 import net.jrdemiurge.enigmaticlegacy.Config;
 import net.jrdemiurge.enigmaticlegacy.item.ModItems;
+import net.jrdemiurge.enigmaticlegacy.item.custom.SoulCrystal;
 import net.jrdemiurge.enigmaticlegacy.stat.ModStats;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.IntTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ServerboundClientCommandPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.stats.StatsCounter;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.GameRules;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.apache.commons.lang3.mutable.MutableBoolean;
@@ -185,5 +192,72 @@ public class ModUtils {
         });
 
         return equipped.booleanValue();
+    }
+
+    public static void setPersistentInteger(Player player, String tag, int value) {
+        ModUtils.setPersistentTag(player, tag, IntTag.valueOf(value));
+    }
+
+    public static void setPersistentTag(Player player, String tag, Tag value) {
+        CompoundTag data = player.getPersistentData();
+        CompoundTag persistent;
+
+        if (!data.contains(Player.PERSISTED_NBT_TAG)) {
+            data.put(Player.PERSISTED_NBT_TAG, (persistent = new CompoundTag()));
+        } else {
+            persistent = data.getCompound(Player.PERSISTED_NBT_TAG);
+        }
+
+        persistent.put(tag, value);
+    }
+
+    public static int getPersistentInteger(Player player, String tag, int expectedValue) {
+        Tag theTag = ModUtils.getPersistentTag(player, tag, IntTag.valueOf(expectedValue));
+        return theTag instanceof IntTag ? ((IntTag) theTag).getAsInt() : expectedValue;
+    }
+
+    public static Tag getPersistentTag(Player player, String tag, Tag expectedValue) {
+        CompoundTag data = player.getPersistentData();
+        CompoundTag persistent;
+
+        if (!data.contains(Player.PERSISTED_NBT_TAG)) {
+            data.put(Player.PERSISTED_NBT_TAG, (persistent = new CompoundTag()));
+        } else {
+            persistent = data.getCompound(Player.PERSISTED_NBT_TAG);
+        }
+
+        if (persistent.contains(tag))
+            return persistent.get(tag);
+        else
+            //persistent.put(tag, expectedValue);
+            return expectedValue;
+    }
+
+    public static boolean isAbsolute(DamageSource source) {
+        return source.is(DamageTypeTags.BYPASSES_INVULNERABILITY);
+    }
+
+    public static boolean canDropSoulCrystal(Player player, boolean hadRing) {
+        if (isAffectedBySoulLoss(player, hadRing)) {
+            // TODO OmniconfigHandler.maxSoulCrystalLoss.getValue()
+            int maxCrystalLoss = 9;
+            return SoulCrystal.getLostCrystals(player) < maxCrystalLoss;
+        } else
+            return false;
+    }
+
+    public static boolean isAffectedBySoulLoss(Player player, boolean hadRing) {
+        // TODO OmniconfigHandler.soulCrystalsMode.getValue()
+        int dropMode = 0;
+        boolean keepInventory = player.level().getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY);
+
+        if (dropMode == 0)
+            return hadRing;
+        else if (dropMode == 1)
+            return (hadRing || keepInventory);
+        else if (dropMode == 2)
+            return true;
+        else
+            return false;
     }
 }

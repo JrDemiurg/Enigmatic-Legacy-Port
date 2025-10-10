@@ -1,5 +1,9 @@
 package net.jrdemiurge.enigmaticlegacy;
 
+import net.jrdemiurge.enigmaticlegacy.client.renderers.PermanentItemRenderer;
+import net.jrdemiurge.enigmaticlegacy.entities.ModEntites;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -18,6 +22,6 @@ public class EnigmaticLegacyClient {
 
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
-
+        EntityRenderers.register(ModEntites.PERMANENT_ITEM_ENTITY.get(), renderManager -> new PermanentItemRenderer(renderManager, Minecraft.getInstance().getItemRenderer()));
     }
 }
