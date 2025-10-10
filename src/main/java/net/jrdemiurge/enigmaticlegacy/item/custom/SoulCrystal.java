@@ -1,17 +1,11 @@
 package net.jrdemiurge.enigmaticlegacy.item.custom;
 
 import java.util.List;
-import java.util.Map;
-import java.util.WeakHashMap;
-
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.Multimap;
 
 import net.jrdemiurge.enigmaticlegacy.EnigmaticLegacy;
 import net.jrdemiurge.enigmaticlegacy.util.ModUtils;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
@@ -19,10 +13,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeMap;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -30,7 +21,6 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 
 public class SoulCrystal extends Item implements IPermanentCrystal {
-	public static Map<Player, Multimap<Holder<Attribute>, AttributeModifier>> attributeDispatcher = new WeakHashMap<>();
 
 	public SoulCrystal(Properties properties) {
 		super(properties);
@@ -78,39 +68,22 @@ public class SoulCrystal extends Item implements IPermanentCrystal {
 		return ModUtils.getPersistentInteger(player, "enigmaticlegacy.lostsoulfragments", 0);
 	}
 
-	public static Multimap<Holder<Attribute>, AttributeModifier> getOrCreateSoulMap(Player player) {
-		if (attributeDispatcher.containsKey(player))
-			return attributeDispatcher.get(player);
-		else {
-			Multimap<Holder<Attribute>, AttributeModifier> playerAttributes = HashMultimap.create();
-			attributeDispatcher.put(player, playerAttributes);
-			return playerAttributes;
-		}
-	}
-
-	public void applyPlayerSoulMap(Player player) {
-		Multimap<Holder<Attribute>, AttributeModifier> soulMap = getOrCreateSoulMap(player);
-		AttributeMap attributeManager = player.getAttributes();
-		attributeManager.addTransientAttributeModifiers(soulMap);
-	}
-
 	public static void updatePlayerSoulMap(Player player) {
-		Multimap<Holder<Attribute>, AttributeModifier> soulMap = getOrCreateSoulMap(player);
-		AttributeMap attributeManager = player.getAttributes();
+		if (player.level().isClientSide) return;
 
-		attributeManager.removeAttributeModifiers(soulMap);
-
-		soulMap.clear();
+		AttributeInstance inst = player.getAttribute(Attributes.MAX_HEALTH);
+		if (inst == null) return;
 
 		int lostFragments = ModUtils.getPersistentInteger(player, "enigmaticlegacy.lostsoulfragments", 0);
+		AttributeModifier attrOld = new AttributeModifier(ResourceLocation.fromNamespaceAndPath(EnigmaticLegacy.MOD_ID, "soul_crystal.max_health"), -0.1F * (lostFragments + 1), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+
+		inst.removeModifier(attrOld);
 
 		if (lostFragments > 0) {
-			soulMap.put(Attributes.MAX_HEALTH, new AttributeModifier(ResourceLocation.fromNamespaceAndPath(EnigmaticLegacy.MOD_ID, "soul_crystal.max_health"), -0.1F * lostFragments, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+			AttributeModifier attr = new AttributeModifier(ResourceLocation.fromNamespaceAndPath(EnigmaticLegacy.MOD_ID, "soul_crystal.max_health"), -0.1F * lostFragments, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+
+			inst.addTransientModifier(attr);
 		}
-
-		attributeManager.addTransientAttributeModifiers(soulMap);
-
-		attributeDispatcher.put(player, soulMap);
 	}
 
 	@Override
