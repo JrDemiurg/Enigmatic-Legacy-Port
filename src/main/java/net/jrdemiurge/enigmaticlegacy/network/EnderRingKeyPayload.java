@@ -34,7 +34,6 @@ public record EnderRingKeyPayload(boolean pressed) implements CustomPacketPayloa
     }
 
     public static void handleOnServer(final EnderRingKeyPayload msg, final IPayloadContext ctx) {
-        // Хэндлеры по умолчанию вызываются на главном треде — можно работать сразу.
         // Если хочешь — можно обернуть в ctx.enqueueWork(...)
         if (!msg.pressed()) return;
 

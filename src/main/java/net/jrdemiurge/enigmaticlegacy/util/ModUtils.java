@@ -12,6 +12,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.IntTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.protocol.game.ServerboundClientCommandPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
@@ -159,6 +160,34 @@ public class ModUtils {
         lastRequestMs = now;
     }
 
+    public static void addLocalizedString(List<Component> list, String str) {
+        list.add(Component.translatable(str));
+    }
+
+    public static void addLocalizedString(List<Component> list, String str, @Nullable ChatFormatting format, Object... values) {
+        Component[] stringValues = new Component[values.length];
+
+        int counter = 0;
+        for (Object value : values) {
+            MutableComponent comp;
+
+            if (value instanceof MutableComponent) {
+                comp = (MutableComponent)value;
+            } else {
+                comp = Component.literal(value.toString());
+            }
+
+            if (format != null) {
+                comp.withStyle(format);
+            }
+
+            stringValues[counter] = comp;
+            counter++;
+        }
+
+        list.add(Component.translatable(str, (Object[])stringValues));
+    }
+
     public static boolean tryForceEquip(LivingEntity entity, ItemStack curio) {
         if (!(curio.getItem() instanceof ICurioItem))
             throw new IllegalArgumentException("I fear for now this only works with ICurioItem");
@@ -229,7 +258,6 @@ public class ModUtils {
         if (persistent.contains(tag))
             return persistent.get(tag);
         else
-            //persistent.put(tag, expectedValue);
             return expectedValue;
     }
 
@@ -239,16 +267,14 @@ public class ModUtils {
 
     public static boolean canDropSoulCrystal(Player player, boolean hadRing) {
         if (isAffectedBySoulLoss(player, hadRing)) {
-            // TODO OmniconfigHandler.maxSoulCrystalLoss.getValue()
-            int maxCrystalLoss = 9;
+            int maxCrystalLoss = Config.MAX_SOUL_CRYSTAL_LOSS.getAsInt();
             return SoulCrystal.getLostCrystals(player) < maxCrystalLoss;
         } else
             return false;
     }
 
     public static boolean isAffectedBySoulLoss(Player player, boolean hadRing) {
-        // TODO OmniconfigHandler.soulCrystalsMode.getValue()
-        int dropMode = 0;
+        int dropMode = Config.SOUL_CRYSTAL_MODE.getAsInt();
         boolean keepInventory = player.level().getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY);
 
         if (dropMode == 0)

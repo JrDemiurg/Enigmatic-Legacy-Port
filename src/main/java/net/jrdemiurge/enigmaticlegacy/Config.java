@@ -14,7 +14,6 @@ public class Config {
             .comment("Defines how much damage bearers of the ring receive from any source. Measured as percentage.")
             .defineInRange("PainModifier", 200, 100, Integer.MAX_VALUE);
 
-    // TODO Впервые такое вижу, что кольцо усиливает отбрасывание
     public static final ModConfigSpec.IntValue KNOCKBACK_DEBUFF = BUILDER
             .comment("How much knockback bearers of the ring take, measured in percents.")
             .defineInRange("KnockbackDebuff", 200, 0, Integer.MAX_VALUE);
@@ -39,10 +38,9 @@ public class Config {
             .comment("How many bonus Block Interaction Range ring provides")
             .defineInRange("BlockInteractionRangeBonus", 2.5, 0, Integer.MAX_VALUE);
 
-    // TODO возможно минимальный показатель надо изменить до 0 если это бонус а не множитель
     public static final ModConfigSpec.IntValue EXPERIENCE_BONUS = BUILDER
             .comment("How much experience will drop from mobs to bearers of the ring, measured in percents.")
-            .defineInRange("ExperienceBonus", 400, 100, Integer.MAX_VALUE);
+            .defineInRange("ExperienceBonus", 400, 0, Integer.MAX_VALUE);
 
     public static final ModConfigSpec.IntValue ENCHANTING_BONUS = BUILDER
             .comment("How much additional Enchanting Power ring provides in Enchanting Table.")
@@ -52,17 +50,15 @@ public class Config {
             .comment("Set to true to prevent curse of insomnia from actually doing anything.")
             .define("DisableInsomnia", false);
 
-    // TODO стоит изменить максимальное значение
     public static final ModConfigSpec.DoubleValue ENDERMAN_RANDOMPORT_FREQUENCY = BUILDER
             .comment("Allows to adjust how frequently Endermen will try to randomly teleport to player bearing the ring, even "
                     + "if they can't see the player and are not angered yet. Lower value = less probability of this happening.")
-            .defineInRange("EndermenRandomportFrequency", 1D, 0, Integer.MAX_VALUE);
+            .defineInRange("EndermenRandomportFrequency", 1D, 0, 500);
 
     public static final ModConfigSpec.DoubleValue ENDERMAN_RANDOMPORT_RANGE = BUILDER
             .comment("Range in which Endermen can try to randomly teleport to bearers of the ring.")
             .defineInRange("EndermenRandomportRange", 32D, 0, 120);
 
-    // TODO Надо также сделать конфиг на список мобов
     public static final ModConfigSpec.DoubleValue NEUTRAL_ANGER_RANGE = BUILDER
             .comment("Range in which neutral creatures are angered against bearers of the ring.")
             .defineInRange("NeutralAngerRange", 24D, 0, 120);
@@ -74,6 +70,44 @@ public class Config {
     public static final ModConfigSpec.ConfigValue<List<? extends String>> NEUTRAL_ANGER_WHITELIST = BUILDER
             .comment("A list of neutral mobs that will be aggressive towards the player.")
             .defineListAllowEmpty("NeutralAngerWhitelist", List.of("minecraft:iron_golem", "minecraft:enderman"), () -> "", Config::validateEntityName);
+
+    public static final ModConfigSpec.IntValue MAX_SOUL_CRYSTAL_LOSS = BUILDER
+            .comment("Maximum amount of Soul Crystals a player can lose before they won't drop anymore."
+                    + " If set to 10 - player can loose all of them, and doing so will result in permadeath."
+                    + " Each crystal lost subtracts 10% of from their maximum possible health value.")
+            .defineInRange("MaxSoulCrystalLoss", 9, 1, 10);
+
+    public static final ModConfigSpec.IntValue SOUL_CRYSTAL_MODE = BUILDER
+            .comment("Soul Crystals mechanic mode. 0 - disabled unless enforced by specific in-game items; 1 - also enabled when keepInventory is true; 2 - always enabled; 3 - always disabled.")
+            .defineInRange("SoulCrystalsMode", 0, 0, 3);
+
+    public static final ModConfigSpec.BooleanValue DISABLE_VESSEL = BUILDER
+            .comment("If true, disable Extradimensional Vessel.")
+            .define("DisableVessel", false);
+
+    public static final ModConfigSpec.BooleanValue OWNER_ONLY_VESSEL = BUILDER
+            .comment("If true, only original owner of Extradimensional Vessel will be able to pick it up.")
+            .define("OwnerOnlyVessel", false);
+
+    public static final ModConfigSpec.BooleanValue INVENTORY_BUTTON_ENABLED = BUILDER
+            .comment("Whether or not button for accessing Ender Chest should be added to inventory GUI.")
+            .define("InventoryButtonEnabled", true);
+
+    public static final ModConfigSpec.IntValue BUTTON_OFFSET_X = BUILDER
+            .comment("Allows to set offset for Ender Chest button on X axis.")
+            .defineInRange("ButtonOffsetX", 0, 0, 32768);
+
+    public static final ModConfigSpec.IntValue BUTTON_OFFSET_Y = BUILDER
+            .comment("Allows to set offset for Ender Chest button on Y axis.")
+            .defineInRange("ButtonOffsetY", 0, 0, 32768);
+
+    public static final ModConfigSpec.IntValue BUTTON_OFFSET_X_CREATIVE = BUILDER
+            .comment("Allows to set offset for Ender Chest button on X axis, for creative inventory specifically.")
+            .defineInRange("ButtonOffsetXCreative", 0, 0, 32768);
+
+    public static final ModConfigSpec.IntValue BUTTON_OFFSET_Y_CREATIVE = BUILDER
+            .comment("Allows to set offset for Ender Chest button on Y axis, for creative inventory specifically.")
+            .defineInRange("ButtonOffsetYCreative", 0, 0, 32768);
 
     public static final ModConfigSpec.DoubleValue SUPER_CURSED_TIME = BUILDER
             .comment("A fraction of time the player should bear the Seven Curses to use Abyssal Artifacts.")
@@ -89,17 +123,16 @@ public class Config {
                     + "it enters their inventory.")
             .define("AutoEquip", false);
 
+    public static final ModConfigSpec.BooleanValue ENABLE_LORE = BUILDER
+            .comment("Set to false to disable displaying lore on Ring of the Seven Curses. Useful if you are a modpack"
+                    + " developer wanting to have your own.")
+            .define("EnableLore", true);
+
     // Это я добавлять не собираюсь
     /*public static final ModConfigSpec.BooleanValue ENABLE_SPECIAL_DROPS = BUILDER
             .comment("Set to false to disable ALL special drops that can be obtained from vanilla mobs when "
                     + "bearing Ring of the Seven Curses.")
             .define("EnableSpecialDrops", true);*/
-
-/*
-    public static final ModConfigSpec.ConfigValue<String> MAGIC_NUMBER_INTRODUCTION = BUILDER
-            .comment("What you want the introduction message to be for the magic number")
-            .define("magicNumberIntroduction", "The magic number is... ");
-*/
 
     static final ModConfigSpec SPEC = BUILDER.build();
 

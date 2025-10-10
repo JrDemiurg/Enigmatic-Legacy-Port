@@ -1,25 +1,14 @@
 package net.jrdemiurge.enigmaticlegacy.gui;
 
-import javax.annotation.Nonnull;
-
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
-
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
-import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
-import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import top.theillusivec4.curios.client.gui.CuriosScreen;
@@ -28,7 +17,6 @@ import top.theillusivec4.curios.client.gui.CuriosScreen;
 public abstract class PlayerInventoryButton extends AbstractWidget {
     protected final AbstractContainerScreen<?> parentGui;
 
-    // параметры отрисовки «как раньше»
     protected final ResourceLocation texture;
     protected final int u, v, texW, texH, yDiffTex;
 
@@ -66,7 +54,6 @@ public abstract class PlayerInventoryButton extends AbstractWidget {
     protected void renderWidget(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
         this.active = true;
 
-        // синхронизация с Recipe Book как раньше
         if (this.parentGui instanceof InventoryScreen || this.parentGui instanceof CuriosScreen) {
             boolean lastVisible = this.isRecipeBookVisible;
 
@@ -98,7 +85,7 @@ public abstract class PlayerInventoryButton extends AbstractWidget {
 
     @Override
     protected void updateWidgetNarration(NarrationElementOutput out) {
-        // без озвучки
+
     }
 
     protected abstract boolean beforeRender(GuiGraphics g, int mouseX, int mouseY, float partialTick);

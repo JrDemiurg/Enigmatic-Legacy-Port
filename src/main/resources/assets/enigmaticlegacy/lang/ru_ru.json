@@ -1,0 +1,54 @@
+{
+  "creativetab.enigmaticlegacy_tab": "§5Enigmatic Legacy",
+
+  "item.enigmaticlegacy.cursed_ring": "§4Кольцо Семи проклятий",
+  "item.enigmaticlegacy.storage_crystal": "Потусторонний сосуд",
+  "item.enigmaticlegacy.soul_crystal": "Осколок души",
+
+  "stat.enigmaticlegacy.time_with_cursed_ring": "Время с Проклятым Кольцом",
+  "stat.enigmaticlegacy.time_without_cursed_ring": "Время без Проклятого Кольца",
+
+  "tooltip.enigmaticlegacy.void": " ",
+  "tooltip.enigmaticlegacy.holdShift": "§5Удерживайте §6Shift§5 для деталей.",
+
+  "tooltip.enigmaticlegacy.eternallyBound1": "§5Однажды надетое, кольцо становится частью вас.",
+  "tooltip.enigmaticlegacy.eternallyBound2": "§5Куда бы вы ни ушли, к кому бы ни обратились: от него не избавиться.",
+  "tooltip.enigmaticlegacy.eternallyBound2_creative": "§5Разве что... лишь с §6Божьей помощью§5, у вас получится освободиться.",
+  "tooltip.enigmaticlegacy.cursedRing3": "§dСемеро проклятий падут на того, кто посмеет завладеть им:",
+  "tooltip.enigmaticlegacy.cursedRing4": "§5- Любой получаемый вами урон будет увеличен вдвое.",
+  "tooltip.enigmaticlegacy.cursedRing4_alt": "§5- Вы будете получать на §6%1$s§5 больше урона из любого источника.",
+  "tooltip.enigmaticlegacy.cursedRing5": "§5- Нейтральные существа станут агрессивными по отношению к вам.",
+  "tooltip.enigmaticlegacy.cursedRing6": "§5- Броня станет на §6%1$s§5 менее эффективна.",
+  "tooltip.enigmaticlegacy.cursedRing7": "§5- Чудовища станут получать на §6%1$s§5 меньше урона от вас.",
+  "tooltip.enigmaticlegacy.cursedRing8": "§5- Однажды попав в пламя, вы не погаснете без помощи воды.",
+  "tooltip.enigmaticlegacy.cursedRing9": "§5- Каждая смерть будет разрывать вашу душу на части.",
+  "tooltip.enigmaticlegacy.cursedRing10": "§5- Вас начнёт мучить ужасная бессоница.",
+  "tooltip.enigmaticlegacy.cursedRing11": "§dCемеро благословений будут ниспосланы на того, кто выстоит:",
+  "tooltip.enigmaticlegacy.cursedRing12": "§5- §6+%1$s§d к уровню добычи§5",
+  "tooltip.enigmaticlegacy.cursedRing13": "§5- §6+%1$s§d к уровню зачарования удачи§5",
+  "tooltip.enigmaticlegacy.cursedRing14": "§5- §6+%1$s§d к получаемому опыту§5",
+  "tooltip.enigmaticlegacy.cursedRing15": "§5- §6+%1$s§d к силе зачаровывания §5при работе с §6Чародейским столом§5.",
+  "tooltip.enigmaticlegacy.cursedRing16": "§5- §6+%1$s§d к дальности взаимодействия с блоками§5",
+  "tooltip.enigmaticlegacy.cursedRing17": "§5- Вы получите силы §6Кольца Края§5, даже не нося его.",
+  "tooltip.enigmaticlegacy.cursedRing18": "§5- Вы получите возможность создавать и использовать §6уникальные реликвии§5.",
+  "tooltip.enigmaticlegacy.cursedRingLore1": "§5Когда-то выкованный древним богом, он манит ",
+  "tooltip.enigmaticlegacy.cursedRingLore2": "§5как смертных, так и высших существ обещанием",
+  "tooltip.enigmaticlegacy.cursedRingLore3": "§5несметных богатств и неизмеримой мощью... ",
+  "tooltip.enigmaticlegacy.cursedRingLore4": "§5Будь то высокомерие или невежество, которые",
+  "tooltip.enigmaticlegacy.cursedRingLore5": "§5заставляют их верить, что они могут использовать,",
+  "tooltip.enigmaticlegacy.cursedRingLore6": "§5силу кольца, за то и другое приходится платить страданиями,",
+  "tooltip.enigmaticlegacy.cursedRingLore7": "§5масштабы которых не поддаются описанию..",
+
+  "tooltip.enigmaticlegacy.cursedOnesOnly1": "Лишь тот, кто Семью проклятиями обременён,",
+  "tooltip.enigmaticlegacy.cursedOnesOnly2": "сможет обуздать силу этой реликвии.",
+
+  "tooltip.enigmaticlegacy.worthyOnesOnly1": "§5Жертва, необходимая для приобретения этого",
+  "tooltip.enigmaticlegacy.worthyOnesOnly2": "§5предмета, огромна, вы должны потратить §699.5%§5 своего времени",
+  "tooltip.enigmaticlegacy.worthyOnesOnly3": "§5в мире, страдая от §6Семи проклятий§5.",
+  "tooltip.enigmaticlegacy.worthyOnesOnly4": "На данный момент, ваше время измеряется в:",
+
+  "tooltip.enigmaticlegacy.soulCrystal1": "§5Нажмите §6ПКМ§5, держа §6Осколок§5 в руке, чтобы",
+  "tooltip.enigmaticlegacy.soulCrystal2": "§5поглотить его и восстановить вашу собственную душу.",
+
+  "message.enigmaticlegacy.cursed_sleep": "Семь Проклятий пробуждают невыразимый страх и терзающие сомнения, когда ты приближаешься к манящему миру снов. Нет надежды для обречённых, нет покоя для неспящих..."
+}

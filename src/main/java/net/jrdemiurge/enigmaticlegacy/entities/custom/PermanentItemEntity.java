@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
+import net.jrdemiurge.enigmaticlegacy.Config;
 import net.jrdemiurge.enigmaticlegacy.EnigmaticLegacy;
 import net.jrdemiurge.enigmaticlegacy.entities.ModEntites;
 import net.jrdemiurge.enigmaticlegacy.item.ModItems;
@@ -261,8 +262,7 @@ public class PermanentItemEntity extends Entity {
 			boolean isPlayerOwner = player.getUUID().equals(this.getOwnerId());
 			boolean allowPickUp = false;
 
-			// TODO сделать конфиг EnigmaticItems.ENIGMATIC_AMULET.isVesselOwnerOnly()
-			if (item instanceof StorageCrystal && (isPlayerOwner || true)) {
+			if (item instanceof StorageCrystal && (isPlayerOwner || !Config.OWNER_ONLY_VESSEL.isTrue())) {
 				allowPickUp = true;
 			} else if (item instanceof SoulCrystal && isPlayerOwner) {
 				allowPickUp = true;
@@ -271,7 +271,6 @@ public class PermanentItemEntity extends Entity {
 			if (allowPickUp) {
 				if (item instanceof StorageCrystal) {
 					CompoundTag crystalNBT = ItemNBTHelper.getNBT(itemstack);
-					// crystalNBT.contains("embeddedSoul") = false
 					ItemStack embeddedSoul = crystalNBT.contains("embeddedSoul") ? ItemStack.parseOptional(this.registryAccess(), crystalNBT.getCompound("embeddedSoul")) : null;
 
 					if (!isPlayerOwner && embeddedSoul != null)

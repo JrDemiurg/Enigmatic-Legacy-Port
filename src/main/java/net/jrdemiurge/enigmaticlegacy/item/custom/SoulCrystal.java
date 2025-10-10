@@ -39,7 +39,10 @@ public class SoulCrystal extends Item implements IPermanentCrystal {
 	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
 		if (Screen.hasShiftDown()) {
+			ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.soulCrystal1");
+			ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.soulCrystal2");
 		} else {
+			ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.holdShift");
 		}
 	}
 
@@ -95,7 +98,6 @@ public class SoulCrystal extends Item implements IPermanentCrystal {
 		Multimap<Holder<Attribute>, AttributeModifier> soulMap = getOrCreateSoulMap(player);
 		AttributeMap attributeManager = player.getAttributes();
 
-		// Removes former attributes
 		attributeManager.removeAttributeModifiers(soulMap);
 
 		soulMap.clear();
@@ -106,7 +108,6 @@ public class SoulCrystal extends Item implements IPermanentCrystal {
 			soulMap.put(Attributes.MAX_HEALTH, new AttributeModifier(ResourceLocation.fromNamespaceAndPath(EnigmaticLegacy.MOD_ID, "soul_crystal.max_health"), -0.1F * lostFragments, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
 		}
 
-		// Applies new attributes
 		attributeManager.addTransientAttributeModifiers(soulMap);
 
 		attributeDispatcher.put(player, soulMap);
@@ -124,8 +125,7 @@ public class SoulCrystal extends Item implements IPermanentCrystal {
 				EnigmaticLegacy.packetInstance.send(PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(playerCenter.x, playerCenter.y, playerCenter.z, 64, player.level().dimension())), new PacketRecallParticles(playerCenter.x, playerCenter.y, playerCenter.z, 48, false));
 			}*/
 
-			player.swing(hand);
-			stack.setCount(0);
+			stack.consume(1, player);
 			return new InteractionResultHolder<>(InteractionResult.SUCCESS, stack);
 		} else
 			return new InteractionResultHolder<>(InteractionResult.PASS, stack);

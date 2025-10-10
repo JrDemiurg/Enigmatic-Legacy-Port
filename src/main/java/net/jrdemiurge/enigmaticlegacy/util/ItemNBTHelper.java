@@ -7,12 +7,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
 
-/**
- * A couple of methods for mork convenient work with NBT of ItemStacks.
- * Originated from Botania's code.
- * @author Integral
- */
-
 public final class ItemNBTHelper {
 	public static boolean detectNBT(final ItemStack stack) {
 		return stack.has(DataComponents.CUSTOM_DATA);

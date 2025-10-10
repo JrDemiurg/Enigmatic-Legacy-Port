@@ -20,7 +20,6 @@ public class ModCreativeModeTabs {
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModItems.CURSED_RING.get());
                         output.accept(ModItems.SOUL_CRYSTAL.get());
-                        output.accept(ModItems.STORAGE_CRYSTAL.get());
                     })
                     .build());
 

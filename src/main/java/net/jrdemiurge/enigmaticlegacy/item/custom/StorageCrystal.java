@@ -94,14 +94,4 @@ public class StorageCrystal extends Item implements IPermanentCrystal {
 
 		return crystal;
 	}
-
-	@Override
-	public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
-		playerIn.startUsingItem(handIn);
-
-		if (!worldIn.isClientSide) {}
-
-		return new InteractionResultHolder<>(InteractionResult.SUCCESS, playerIn.getItemInHand(handIn));
-	}
-
 }

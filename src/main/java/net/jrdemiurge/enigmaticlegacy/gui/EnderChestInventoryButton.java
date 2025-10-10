@@ -1,7 +1,6 @@
 package net.jrdemiurge.enigmaticlegacy.gui;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-
+import net.jrdemiurge.enigmaticlegacy.Config;
 import net.jrdemiurge.enigmaticlegacy.util.ModUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -25,23 +24,21 @@ public class EnderChestInventoryButton extends PlayerInventoryButton {
     protected boolean beforeRender(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
         boolean hasRing = ModUtils.isTheCursedOne(Minecraft.getInstance().player);
 
-        // TODO сюда добавить конфиг на отключение кнопки
-        if (!hasRing) {
+        if (!hasRing || !Config.INVENTORY_BUTTON_ENABLED.isTrue()) {
             this.active = false;
             return false;
         }
         return true;
     }
 
-    // TODO сюда добавить конфиг на положение кнопки
     @Override
     public Tuple<Integer, Integer> getOffsets(boolean creative) {
         int x = creative
-                ? 170 + 0
-                : 150 + 0;
+                ? 170 + Config.BUTTON_OFFSET_X_CREATIVE.getAsInt()
+                : 150 + Config.BUTTON_OFFSET_X.getAsInt();
         int y = creative
-                ? 5 + 0
-                : 61 + 0;
+                ? 5 + Config.BUTTON_OFFSET_Y_CREATIVE.getAsInt()
+                : 61 + Config.BUTTON_OFFSET_Y.getAsInt();
         return new Tuple<>(x, y);
     }
 }

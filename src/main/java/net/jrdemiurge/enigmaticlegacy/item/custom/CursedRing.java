@@ -6,6 +6,8 @@ import net.jrdemiurge.enigmaticlegacy.Config;
 import net.jrdemiurge.enigmaticlegacy.EnigmaticLegacy;
 import net.jrdemiurge.enigmaticlegacy.mixin.EnderManAccessor;
 import net.jrdemiurge.enigmaticlegacy.util.ModUtils;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -202,12 +204,51 @@ public class CursedRing extends Item implements ICurioItem {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.void");
+
         if (Screen.hasShiftDown()) {
-            ModUtils.indicateWorthyOnesOnly(tooltipComponents);
+            ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.cursedRing3");
+            if (Config.PAIN_MODIFIER.getAsInt() / 100D == 2.0) {
+                ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.cursedRing4");
+            } else {
+                ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.cursedRing4_alt", ChatFormatting.GOLD, Config.PAIN_MODIFIER.getAsInt() + "%");
+            }
+            ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.cursedRing5");
+            ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.cursedRing6", ChatFormatting.GOLD, Config.ARMOR_DEBUFF.get()+"%");
+            ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.cursedRing7", ChatFormatting.GOLD, Config.MONSTER_DAMAGE_DEBUFF.get()+"%");
+            ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.cursedRing8");
+            ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.cursedRing9");
+            ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.cursedRing10");
+            ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.void");
+            ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.cursedRing11");
+            ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.cursedRing12", ChatFormatting.GOLD, Config.LOOTING_BONUS.get());
+            ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.cursedRing13", ChatFormatting.GOLD, Config.FORTUNE_BONUS.get());
+            ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.cursedRing14", ChatFormatting.GOLD, Config.EXPERIENCE_BONUS.get()+"%");
+            ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.cursedRing15", ChatFormatting.GOLD, Config.ENCHANTING_BONUS.get());
+            ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.cursedRing16", ChatFormatting.GOLD, Config.BLOCK_INTERACTION_RANGE_BONUS.get());
+            ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.cursedRing17");
+            ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.cursedRing18");
         } else {
-            ModUtils.indicateCursedOnesOnly(tooltipComponents);
+            if (Config.ENABLE_LORE.isTrue()) {
+                ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.cursedRingLore1");
+                ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.cursedRingLore2");
+                ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.cursedRingLore3");
+                ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.cursedRingLore4");
+                ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.cursedRingLore5");
+                ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.cursedRingLore6");
+                ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.cursedRingLore7");
+                ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.void");
+            }
+            ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.eternallyBound1");
+
+            if (Minecraft.getInstance().player != null && Minecraft.getInstance().player.isCreative()) {
+                ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.eternallyBound2_creative");
+            } else {
+                ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.eternallyBound2");
+            }
+
+            ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.void");
+            ModUtils.addLocalizedString(tooltipComponents, "tooltip.enigmaticlegacy.holdShift");
         }
-
     }
-
 }

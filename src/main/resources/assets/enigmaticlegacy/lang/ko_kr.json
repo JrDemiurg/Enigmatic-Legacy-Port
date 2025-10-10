@@ -1,0 +1,54 @@
+{
+  "creativetab.enigmaticlegacy_tab": "§5Enigmatic Legacy",
+
+  "item.enigmaticlegacy.cursed_ring": "§4일곱 저주의 반지",
+  "item.enigmaticlegacy.storage_crystal": "이계의 그릇",
+  "item.enigmaticlegacy.soul_crystal": "영혼 수정",
+
+  "stat.enigmaticlegacy.time_with_cursed_ring": "저주받은 반지를 착용한 시간",
+  "stat.enigmaticlegacy.time_without_cursed_ring": "저주받은 반지를 착용하지 않은 시간",
+
+  "tooltip.enigmaticlegacy.void": " ",
+  "tooltip.enigmaticlegacy.holdShift": "§6Shift§5를 눌러 자세한 정보를 확인하세요.",
+
+  "tooltip.enigmaticlegacy.eternallyBound1": "§5한번 장착하면, 이것은 당신의 일부가 됩니다.",
+  "tooltip.enigmaticlegacy.eternallyBound2": "§4이 반지는 영원히 당신에게 남을 것입니다",
+  "tooltip.enigmaticlegacy.eternallyBound2_creative": "§6신의 힘이 있다면, 반지를 벗을 수 있습니다.",
+  "tooltip.enigmaticlegacy.cursedRing3": "§d착용한 자에게 주어지는 일곱 가지의 저주:",
+  "tooltip.enigmaticlegacy.cursedRing4": "§5- §6모든§5 피해로부터 두 배의 피해를 받습니다.",
+  "tooltip.enigmaticlegacy.cursedRing4_alt": "§5- §6모든§5 피해로부터 §6%1$s§5만큼의 피해를 받습니다.",
+  "tooltip.enigmaticlegacy.cursedRing5": "§5- 중립 생명체가 적대적으로 변합니다.",
+  "tooltip.enigmaticlegacy.cursedRing6": "§5- 갑옷의 효율이 §6%1$s§5만큼 감소합니다.",
+  "tooltip.enigmaticlegacy.cursedRing7": "§5- 몬스터가 §6%1$s§5만큼 피해를 덜 받습니다.",
+  "tooltip.enigmaticlegacy.cursedRing8": "§5- 불이 붙으면, 영구히 유지됩니다.",
+  "tooltip.enigmaticlegacy.cursedRing9": "§5- 모든 죽음이 영혼을 무너뜨립니다.",
+  "tooltip.enigmaticlegacy.cursedRing10": "§5- 치유 불가능한 불면증에 시달리게 됩니다.",
+  "tooltip.enigmaticlegacy.cursedRing11": "§d이 모든 걸 견디는 자에게 주어지는 일곱 가지의 축복:",
+  "tooltip.enigmaticlegacy.cursedRing12": "§5- §6+%1$s§d 약탈 등급",
+  "tooltip.enigmaticlegacy.cursedRing13": "§5- §6+%1$s§d 행운 등급",
+  "tooltip.enigmaticlegacy.cursedRing14": "§5- §6+%1$s§5 §d경험치§5 추가 획득.",
+  "tooltip.enigmaticlegacy.cursedRing15": "§5- §6마법 부여대§5에서 §6+%1$s§d 마법 부여력§5을 얻습니다.",
+  "tooltip.enigmaticlegacy.cursedRing16": "§5- §6+%1$s§d 블록 상호 작용 거리§5",
+  "tooltip.enigmaticlegacy.cursedRing17": "§5- §6엔더의 반지§5의 기능을 사용할 수 있습니다.",
+  "tooltip.enigmaticlegacy.cursedRing18": "§5- 특별한 유물들을 제작할 수 있습니다.",
+  "tooltip.enigmaticlegacy.cursedRingLore1": "§5한때 초고대의 신에 의해 만들어진 이 반지는,",
+  "tooltip.enigmaticlegacy.cursedRingLore2": "§5무수한 부와 헤아릴 수 없는 힘을 가진 인간들과",
+  "tooltip.enigmaticlegacy.cursedRingLore3": "§5고위의 존재들에게 손짓했습니다...",
+  "tooltip.enigmaticlegacy.cursedRingLore4": "§5그들이 반지의 힘을 이용할 수 있다고 믿게 만든 것이",
+  "tooltip.enigmaticlegacy.cursedRingLore5": "§5오만이었는지, 아니면 무지였는지, 어느 쪽이 되었든",
+  "tooltip.enigmaticlegacy.cursedRingLore6": "§5그들은 두 경우 다 말로 표현할 수 없을 정도의",
+  "tooltip.enigmaticlegacy.cursedRingLore7": "§5고통을 대가로 치러야만 했습니다.",
+
+  "tooltip.enigmaticlegacy.cursedOnesOnly1": "일곱 저주를 품은 자만이 이 아이템의",
+  "tooltip.enigmaticlegacy.cursedOnesOnly2": "힘을 얻고 사용할 권리를 얻습니다.",
+
+  "tooltip.enigmaticlegacy.worthyOnesOnly1": "§5이 아이템을 얻기 위해선 큰 희생이 필요합니다.",
+  "tooltip.enigmaticlegacy.worthyOnesOnly2": "§5반지를 끼지 않은 시간의 §699.5%§5를 §6일곱 저주§5에",
+  "tooltip.enigmaticlegacy.worthyOnesOnly3": "§5고통받아야 합니다.",
+  "tooltip.enigmaticlegacy.worthyOnesOnly4": "현재 저주에 고통받은 시간의 비율:",
+
+  "tooltip.enigmaticlegacy.soulCrystal1": "§6마우스 오른쪽 버튼§5을 눌러 수정을 흡수하고",
+  "tooltip.enigmaticlegacy.soulCrystal2": "§6영혼 수정§5 한 개를 회복할 수 있습니다.",
+
+  "message.enigmaticlegacy.cursed_sleep": "당신이 꿈의 매혹적인 영역에 다가갈 때, 일곱 저주가 형언할 수 없는 공포를 일깨우고 그 내면의 불확실성을 갉아먹기 시작했습니다. 절망하는 자에게 희망은 없고, 불면인 자에게 잠이란 없는 법이죠..."
+}

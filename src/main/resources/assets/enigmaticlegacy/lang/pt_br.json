@@ -1,0 +1,54 @@
+{
+  "creativetab.enigmaticlegacy_tab": "§5Enigmatic Legacy",
+
+  "item.enigmaticlegacy.cursed_ring": "§4Anel das Sete Maldições",
+  "item.enigmaticlegacy.storage_crystal": "Vasilha Extradimensional",
+  "item.enigmaticlegacy.soul_crystal": "Cristal da Alma",
+
+  "stat.enigmaticlegacy.time_with_cursed_ring": "Tempo com o Anel Amaldiçoado",
+  "stat.enigmaticlegacy.time_without_cursed_ring": "Tempo sem o Anel Amaldiçoado",
+
+  "tooltip.enigmaticlegacy.void": " ",
+  "tooltip.enigmaticlegacy.holdShift": "§5Segure §6Shift§5 para ver detalhes.",
+
+  "tooltip.enigmaticlegacy.eternallyBound1": "§5Uma vez usado, torna-se parte de você.",
+  "tooltip.enigmaticlegacy.eternallyBound2": "§4Este anel persistirá com você para sempre.",
+  "tooltip.enigmaticlegacy.eternallyBound2_creative": "§6Com o poder dos deuses, você pode desequipá-lo.",
+  "tooltip.enigmaticlegacy.cursedRing3": "§dSete maldições cairão sobre quem o possuir:",
+  "tooltip.enigmaticlegacy.cursedRing4": "§5- Você recebe o dobro de dano de §6QUALQUER§5 fonte.",
+  "tooltip.enigmaticlegacy.cursedRing4_alt": "§5- Você recebe §6%1$s§5 de dano de §6QUALQUER§5 fonte.",
+  "tooltip.enigmaticlegacy.cursedRing5": "§5- Criaturas neutras são agressivas com você.",
+  "tooltip.enigmaticlegacy.cursedRing6": "§5- A armadura é §6%1$s§5 menos eficaz.",
+  "tooltip.enigmaticlegacy.cursedRing7": "§5- Monstros recebem §6%1$s§5 menos dano de você.",
+  "tooltip.enigmaticlegacy.cursedRing8": "§5- Quando em chamas, você queima para sempre.",
+  "tooltip.enigmaticlegacy.cursedRing9": "§5- Cada morte rasga sua alma.",
+  "tooltip.enigmaticlegacy.cursedRing10": "§5- Você sofre de insônia incurável.",
+  "tooltip.enigmaticlegacy.cursedRing11": "§dSete bênçãos recompensarão aqueles que resistirem:",
+  "tooltip.enigmaticlegacy.cursedRing12": "§5- §6+%1$s§d Nível de Saque",
+  "tooltip.enigmaticlegacy.cursedRing13": "§5- §6+%1$s§d Nível de Fortuna",
+  "tooltip.enigmaticlegacy.cursedRing14": "§5- §6+%1$s§5 §dExperiência§5 dropada.",
+  "tooltip.enigmaticlegacy.cursedRing15": "§5- §6+%1$s§d Poder de Encantamento§5 na §6Mesa de Encantamento§5.",
+  "tooltip.enigmaticlegacy.cursedRing16": "§5- §6+%1$s§d Alcance de Interação com Blocos§5",
+  "tooltip.enigmaticlegacy.cursedRing17": "§5- Funcionalidade do §6Anel do Ender§5.",
+  "tooltip.enigmaticlegacy.cursedRing18": "§5- Você pode criar e usar relíquias únicas.",
+  "tooltip.enigmaticlegacy.cursedRingLore1": "§5Uma vez forjado pelo deus antediluviano, ele atrai",
+  "tooltip.enigmaticlegacy.cursedRingLore2": "§5mortais e seres superiores com a promessa",
+  "tooltip.enigmaticlegacy.cursedRingLore3": "§5de riquezas incontáveis e poder insondável...",
+  "tooltip.enigmaticlegacy.cursedRingLore4": "§5Se é arrogância ou ignorância que os leva",
+  "tooltip.enigmaticlegacy.cursedRingLore5": "§5a acreditar que podem dominar o poder do anel,",
+  "tooltip.enigmaticlegacy.cursedRingLore6": "§5ambos são pagos com sofrimento, cuja extensão",
+  "tooltip.enigmaticlegacy.cursedRingLore7": "§5desafia a descrição.",
+
+  "tooltip.enigmaticlegacy.cursedOnesOnly1": "Apenas aqueles que carregam as Sete Maldições",
+  "tooltip.enigmaticlegacy.cursedOnesOnly2": "têm o poder de obter e usar este item.",
+
+  "tooltip.enigmaticlegacy.worthyOnesOnly1": "§5O sacrifício necessário para adquirir este item",
+  "tooltip.enigmaticlegacy.worthyOnesOnly2": "§5é imenso - você deve passar §699.5%§5 do seu",
+  "tooltip.enigmaticlegacy.worthyOnesOnly3": "§5tempo no mundo sofrendo as §6Sete Maldições§5.",
+  "tooltip.enigmaticlegacy.worthyOnesOnly4": "Por enquanto, seu tempo mede em:",
+
+  "tooltip.enigmaticlegacy.soulCrystal1": "§6Clique com o botão direito§5 para absorver o cristal e",
+  "tooltip.enigmaticlegacy.soulCrystal2": "§5restaurar um dos seus §6Cristais de Alma§5.",
+
+  "message.enigmaticlegacy.cursed_sleep": "Sete Maldições despertam medo indescritível e incerteza roedora conforme você se aproxima do reino tentador dos sonhos. Sem esperança para os sem esperança, sem sono para os sem sono..."
+}

@@ -1,0 +1,54 @@
+{
+  "creativetab.enigmaticlegacy_tab": "§5Enigmatic Legacy",
+
+  "item.enigmaticlegacy.cursed_ring": "§4七咒之戒",
+  "item.enigmaticlegacy.storage_crystal": "超维容器",
+  "item.enigmaticlegacy.soul_crystal": "灵魂水晶",
+
+  "stat.enigmaticlegacy.time_with_cursed_ring": "佩戴诅咒之戒的时间",
+  "stat.enigmaticlegacy.time_without_cursed_ring": "未佩戴诅咒之戒的时间",
+
+  "tooltip.enigmaticlegacy.void": " ",
+  "tooltip.enigmaticlegacy.holdShift": "§5按住 §6Shift§5 查看详情。",
+
+  "tooltip.enigmaticlegacy.eternallyBound1": "§5一旦佩戴，它便成为你的一部分。",
+  "tooltip.enigmaticlegacy.eternallyBound2": "§4这枚戒指将永远陪伴着你。",
+  "tooltip.enigmaticlegacy.eternallyBound2_creative": "§6需要神的能力才能取下它。",
+  "tooltip.enigmaticlegacy.cursedRing3": "§d七个诅咒将会降临到佩戴者身上：",
+  "tooltip.enigmaticlegacy.cursedRing4": "§5- 使受到的§6任何§5来源的伤害加倍",
+  "tooltip.enigmaticlegacy.cursedRing4_alt": "§5- 使受到的§6任何§5来源的伤害变化为原先的 §6%1$s",
+  "tooltip.enigmaticlegacy.cursedRing5": "§5- 中立生物会主动攻击你",
+  "tooltip.enigmaticlegacy.cursedRing6": "§5- 盔甲效力降低 §6%1$s",
+  "tooltip.enigmaticlegacy.cursedRing7": "§5- 你对怪物的伤害降低 §6%1$s§5",
+  "tooltip.enigmaticlegacy.cursedRing8": "§5- 一旦着火，火焰将会永远灼烧着你",
+  "tooltip.enigmaticlegacy.cursedRing9": "§5- 每次死亡都会使你的灵魂破裂",
+  "tooltip.enigmaticlegacy.cursedRing10": "§5- 无药可医的失眠症困扰着你",
+  "tooltip.enigmaticlegacy.cursedRing11": "§d而那些坚韧顽强之人，将会被给予七个祝福：",
+  "tooltip.enigmaticlegacy.cursedRing12": "§5- §6+%1$s§d 抢夺等级",
+  "tooltip.enigmaticlegacy.cursedRing13": "§5- §6+%1$s§d 时运等级",
+  "tooltip.enigmaticlegacy.cursedRing14": "§5- §6+%1$s§5 掉落的§d经验§",
+  "tooltip.enigmaticlegacy.cursedRing15": "§5- §6+%1$s§5 在附魔台中的§d附魔能力",
+  "tooltip.enigmaticlegacy.cursedRing16": "§5- §6+%1$s§d 方块交互距离§5",
+  "tooltip.enigmaticlegacy.cursedRing17": "§5- 获得§6末影之戒§5的效果",
+  "tooltip.enigmaticlegacy.cursedRing18": "§5- 你可以制作和使用独特遗物",
+  "tooltip.enigmaticlegacy.cursedRingLore1": "§5由远古时代的神明铸造，无论是凡人",
+  "tooltip.enigmaticlegacy.cursedRingLore2": "§5还是那些更高等的存在都会受到其",
+  "tooltip.enigmaticlegacy.cursedRingLore3": "§5承诺的无数财富与无穷力量的诱惑……",
+  "tooltip.enigmaticlegacy.cursedRingLore4": "§5而前人们无一例外都产生了自己能",
+  "tooltip.enigmaticlegacy.cursedRingLore5": "§5驾驭戒指力量的自负想法，而最终",
+  "tooltip.enigmaticlegacy.cursedRingLore6": "§5他们也同样为自己的傲慢或无知",
+  "tooltip.enigmaticlegacy.cursedRingLore7": "§5付出了不可思议的痛苦代价。",
+
+  "tooltip.enigmaticlegacy.cursedOnesOnly1": "承受七咒之人，",
+  "tooltip.enigmaticlegacy.cursedOnesOnly2": "才能使用该物品。",
+
+  "tooltip.enigmaticlegacy.worthyOnesOnly1": "§5获得使用这种物品的资格需要付出极大的牺牲：",
+  "tooltip.enigmaticlegacy.worthyOnesOnly2": "§5你必须在自来到世界以来§699.5%§的时间",
+  "tooltip.enigmaticlegacy.worthyOnesOnly3": "§5都在七咒的折磨下度过。",
+  "tooltip.enigmaticlegacy.worthyOnesOnly4": "目前这段时间的占比为：",
+
+  "tooltip.enigmaticlegacy.soulCrystal1": "§6右击§5吸收水晶，",
+  "tooltip.enigmaticlegacy.soulCrystal2": "§5并恢复一颗破碎的§6灵魂水晶§5。",
+
+  "message.enigmaticlegacy.cursed_sleep": "当你接近睡着时，七咒唤醒了你内心最深处不可言语的恐惧，以及恼人的不确定性。就如绝望者永无希望，不眠者永不安息……"
+}
