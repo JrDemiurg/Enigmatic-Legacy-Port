@@ -11,7 +11,6 @@ import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.util.Tuple;
 import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -19,8 +18,7 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import top.theillusivec4.curios.client.gui.CuriosScreen;
 import net.minecraft.resources.ResourceLocation;
 
-@OnlyIn(Dist.CLIENT)
-@EventBusSubscriber(modid = EnigmaticLegacy.MOD_ID)
+@EventBusSubscriber(modid = EnigmaticLegacy.MOD_ID, value = Dist.CLIENT)
 public class ScreenEventHandler {
 
     @SubscribeEvent(priority = EventPriority.LOW)
